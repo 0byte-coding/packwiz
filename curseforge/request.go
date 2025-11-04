@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/packwiz/packwiz/core"
+	"github.com/0byte-coding/packwiz/core"
 	"io"
 	"net/http"
 	"net/url"
@@ -18,7 +18,7 @@ const cfApiServer = "api.curseforge.com"
 // If you fork/derive from packwiz, I request that you obtain your own API key.
 const cfApiKeyDefault = "JDJhJDEwJHNBWVhqblU1N0EzSmpzcmJYM3JVdk92UWk2NHBLS3BnQ2VpbGc1TUM1UGNKL0RYTmlGWWxh"
 
-// Exists so you can provide it as a build parameter: -ldflags="-X 'github.com/packwiz/packwiz/curseforge.cfApiKey=key'"
+// Exists so you can provide it as a build parameter: -ldflags="-X 'github.com/0byte-coding/packwiz/curseforge.cfApiKey=key'"
 var cfApiKey = ""
 
 func decodeDefaultKey() string {

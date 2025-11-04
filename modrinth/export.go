@@ -10,10 +10,10 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/packwiz/packwiz/cmdshared"
+	"github.com/0byte-coding/packwiz/cmdshared"
 	"github.com/spf13/viper"
 
-	"github.com/packwiz/packwiz/core"
+	"github.com/0byte-coding/packwiz/core"
 	"github.com/spf13/cobra"
 )
 

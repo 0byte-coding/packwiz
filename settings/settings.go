@@ -1,7 +1,7 @@
 package settings
 
 import (
-	"github.com/packwiz/packwiz/cmd"
+	"github.com/0byte-coding/packwiz/cmd"
 	"github.com/spf13/cobra"
 )
 

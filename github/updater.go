@@ -7,7 +7,7 @@ import (
 
 	"github.com/dlclark/regexp2"
 	"github.com/mitchellh/mapstructure"
-	"github.com/packwiz/packwiz/core"
+	"github.com/0byte-coding/packwiz/core"
 )
 
 type ghUpdateData struct {
