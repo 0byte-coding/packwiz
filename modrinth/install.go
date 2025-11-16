@@ -259,13 +259,12 @@ func installVersion(project *modrinthApi.Project, version *modrinthApi.Version, 
 				// Look up version IDs
 				if len(depVersionIDPendingQueue) > 0 {
 					depVersions, err := mrDefaultClient.Versions.GetMultiple(depVersionIDPendingQueue)
-					if err == nil {
-						for _, v := range depVersions {
-							// Add project ID to queue
-							depProjectIDPendingQueue = append(depProjectIDPendingQueue, mapDepOverride(*v.ProjectID, isQuilt, mcVersion))
-						}
-					} else {
-						fmt.Printf("Error retrieving dependency data: %s\n", err.Error())
+					if err != nil {
+						return fmt.Errorf("failed to retrieve dependency versions (this may be due to rate limiting): %w", err)
+					}
+					for _, v := range depVersions {
+						// Add project ID to queue
+						depProjectIDPendingQueue = append(depProjectIDPendingQueue, mapDepOverride(*v.ProjectID, isQuilt, mcVersion))
 					}
 					depVersionIDPendingQueue = depVersionIDPendingQueue[:0]
 				}
@@ -296,7 +295,7 @@ func installVersion(project *modrinthApi.Project, version *modrinthApi.Version, 
 				}
 				depProjects, err := mrDefaultClient.Projects.GetMultiple(depProjectIDPendingQueue)
 				if err != nil {
-					fmt.Printf("Error retrieving dependency data: %s\n", err.Error())
+					return fmt.Errorf("failed to retrieve dependency projects (this may be due to rate limiting): %w", err)
 				}
 				depProjectIDPendingQueue = depProjectIDPendingQueue[:0]
 

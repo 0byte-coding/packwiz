@@ -77,7 +77,7 @@ func (t *rateLimitTransport) RoundTrip(req *http.Request) (*http.Response, error
 			}
 
 			// Max retries exceeded, return the error response
-			return resp, fmt.Errorf("rate limit exceeded after %d retries", t.MaxRetries)
+			return resp, fmt.Errorf("rate limit exceeded after %d retries - Modrinth API is heavily rate limiting requests. Please try again later or contact Modrinth support if this persists", t.MaxRetries)
 		}
 
 		// Success or non-rate-limit error
@@ -118,7 +118,7 @@ func newRateLimitHTTPClient() *http.Client {
 	return &http.Client{
 		Transport: &rateLimitTransport{
 			Transport:  http.DefaultTransport,
-			MaxRetries: 5,
+			MaxRetries: 100, // 100 might be a bit high, 50 should be a good upper limit
 		},
 	}
 }
